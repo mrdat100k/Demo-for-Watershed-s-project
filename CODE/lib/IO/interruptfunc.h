@@ -17,7 +17,7 @@ void attimeout()
 void btn_select()
 {
     btn_Select.disable_irq();
-    timeout.attach(&attimeout,15);
+    timeout.attach(&attimeout, 15);
     wait_ms(20);
     mode++;
     if(mode >= 3) 
@@ -31,7 +31,7 @@ void btn_select()
 void btn_set()
 {
     btn_Set.disable_irq();
-    timeout.attach(&attimeout,15);
+    timeout.attach(&attimeout, 15);
     wait_ms(20);
     if(mode == 1)
     {
@@ -51,7 +51,7 @@ void btn_set()
 void btn_press()
 {
     btn_Set.disable_irq();
-    timeout.attach(&attimeout,15);
+    timeout.attach(&attimeout, 15);
     wait_ms(20);
     if((mode == 1) || (mode == 2))
     {
