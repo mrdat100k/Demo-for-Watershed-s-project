@@ -1,3 +1,6 @@
+// test editting
+int foo=0;
+
 #include <mbed.h>
 #include <lcd_menu.hpp>
 #include <INA219.hpp>
