@@ -1,3 +1,10 @@
+/** @file iopin.h
+*
+* @brief To define the IO pin follow it's function.
+* 
+* @par
+* COPYRIGHT NOTICE: (c) 2017 MANDEVICES GROUP, HUST.
+*/
 #ifndef _IO_H
 #define _IO_H
 //USB pins
@@ -30,4 +37,4 @@
 #define GPIO8 PA_10
 #define GPIO9 PC_14
 #define GPIO10 PC_15
-#endif
+#endif /* _IO_H */
