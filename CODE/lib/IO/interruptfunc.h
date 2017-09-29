@@ -21,12 +21,12 @@ GLOBAL VARIABLES
 ******************************************************************************/
 uint8_t g_mode=0;
 Timeout g_time_out_s;
-time_t g_time_1_s; //chuc nang ?
-time_t g_time_2_s; // chuc nang?
+time_t g_time_start_s;
+time_t g_time_stop_s; 
 InterruptIn g_setting_button(set);
 InterruptIn g_selecting_button(select);
-bool g_timer_on_1_=true; //
-bool  g_timer_on_2_=true;//
+bool g_timer_on_1 = true; 
+bool g_timer_on_2 = true;
 /******************************************************************************
 * DESCRIPTION: the timeout service routine, when timeout reset mode to switch back the main menu
 * @author:
@@ -44,7 +44,7 @@ bool  g_timer_on_2_=true;//
 ******************************************************************************/
 void set_mode_when_timeout() 
 {
-    g_mode=0;
+    g_mode = 0;
 }
 
 /******************************************************************************
@@ -97,14 +97,14 @@ static void fall_set_btn_isr()
     wait_ms(20);
     if(mode == 1)
     {
-        timerOn1=!timerOn1; 
-        time1=time(NULL);
+        g_timer_on_1 =! g_timer_on_1; 
+        g_time_start_s = time(NULL);
     }
   
     if(mode == 2) 
     { 
-        timerOn2=!timerOn2; 
-        time1=time(NULL);
+        g_timer_on_1 =! g_timer_on_1; 
+        g_time_start_s = time(NULL);
     }
   
     btn_Set.enable_irq();
@@ -131,18 +131,18 @@ static void rise_set_btn_isr()
     wait_ms(20);
     if((mode == 1) || (mode == 2))
     {
-        time2=time(NULL);
+        g_time_stop_s = time(NULL);
     }
   
-    if((time2-time1) >= 2)
+    if((g_time_stop_s - g_time_start_s) >= 2)
     {
         set_time(0); 
         if(mode == 1) 
         {
-            timerOn1 =! timerOn1; 
+            g_timer_on_1 =! g_timer_on_1; 
             if(mode == 2) 
             {
-              timerOn2 =! timerOn2;
+              g_timer_on_2 =! g_timer_on_2;
             }
         }
     }
