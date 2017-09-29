@@ -102,9 +102,9 @@ int main()
     sensor2.calibrate_32v_3200A();
     g_setting_button.disable_irq();
     g_selecting_button.disable_irq();
-    g_setting_button.fall(&btn_set);
-    g_selecting_button.fall(&btn_select);
-    g_setting_button.rise(&btn_press);
+    g_setting_button.fall(&fall_set_btn_isr);
+    g_selecting_button.fall(&fall_select_btn_isr);
+    g_setting_button.rise(&rise_set_btn_isr);
     g_setting_button.enable_irq();
     g_selecting_button.enable_irq();
     wait(2);
