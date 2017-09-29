@@ -1,3 +1,11 @@
+/** @file logo.h
+*
+* @brief This file save the bitmap of watershed's logo
+*
+* @par
+* COPYRIGHT NOTICE: (c) 2017 MANDEVICES GROUP, HUST.
+* All rights reserved.
+*/
 #ifndef _LOGO_H
 #define _LOGO_H
 #include<mbed.h>
