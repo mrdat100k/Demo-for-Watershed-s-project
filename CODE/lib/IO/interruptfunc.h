@@ -6,8 +6,8 @@ uint8_t g_mode=0;
 Timeout g_time_out_s;
 time_t g_time_1_s; //chuc nang ?
 time_t g_time_2_s; // chuc nang?
-InterruptIn g_button_set(set);
-InterruptIn g_button_select(select);
+InterruptIn g_setting_button(set);
+InterruptIn g_selecting_button(select);
 bool g_timer_on_1_=true; //
 bool  g_timer_on_2_=true;//
 void set_mode_when_timeout() 
