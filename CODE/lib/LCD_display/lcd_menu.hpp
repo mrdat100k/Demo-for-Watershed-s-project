@@ -1,6 +1,19 @@
+/** @file lcd_menu.hpp
+*
+* @brief This is a library for format and display three menu.
+* 
+* @par
+* COPYRIGHT NOTICE: (c) 2017 MANDEVICES GROUP, HUST.
+*/
 #ifndef _LCD_MENU_H_
 #define _LCD_MENU_H_
+/******************************************************************************
+INCLUDES
+******************************************************************************/
 #include <Adafruit_SSD1306.h>
+/******************************************************************************
+DATA TYPE DEFINE
+******************************************************************************/
 #define pos_menuX 0
 #define pos_menuY 0
 #define position1X 0
@@ -28,7 +41,7 @@
 #define position12X 80
 #define position12Y 54
 
-
+/* an I2C sub-class that provides a constructed default */
 class I2CPreInit : public I2C
 {
     public:
@@ -41,6 +54,24 @@ class I2CPreInit : public I2C
 
 I2CPreInit gI2C(PB_7, PB_6);
 Adafruit_SSD1306_I2c gOled(gI2C, NC);
+/******************************************************************************
+* DESCRIPTION: Function to write a string at position defined on screen 
+* (hàm dùng để viết một chuỗi kí tự ra một vị trí trên màn hình)
+* @author:
+* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* @version: v1.0.0
+* @param:
+* int16_t posX: the latitude position
+* int16_t posY: the longitude position
+* const char* data: the string will print onto screen
+* @return: NONE
+* @see:
+* .../lib/LCD_display/lcd_menu.hpp
+* @todo:
+* NONE
+* @bug:
+* NONE
+******************************************************************************/
 void write_position(int16_t posX, int16_t posY, const char* data)
 {
     gOled.setTextCursor(posX, posY);
@@ -48,6 +79,24 @@ void write_position(int16_t posX, int16_t posY, const char* data)
     gOled.setTextCursor(0, 0);
 }
 
+/******************************************************************************
+* DESCRIPTION: Function to display the main menu
+* @author:
+* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* @version: v1.0.0
+* @param:
+* bool _charge : a boolean varible mean batery charg Yes or No
+* float _batVolt: the batery voltage
+* bool _DCOn: a boolean varible mean the DC On Yes or No
+* bool _ACOn: a boolean varible mean the AC (inverter) On Yes or No
+* @return: NONE
+* @see:
+* .../lib/LCD_display/lcd_menu.hpp
+* @todo:
+* NONE
+* @bug:
+* NONE
+******************************************************************************/
 void menu1_display(bool _charge, float _batVolt, bool _DCOn, bool _ACOn)
 {
     char buff[10];
@@ -103,6 +152,28 @@ void menu1_display(bool _charge, float _batVolt, bool _DCOn, bool _ACOn)
     gOled.display();
 }
 
+/******************************************************************************
+* DESCRIPTION: Function to display the PV charge Info menu
+* @author:
+* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* @version: v1.0.0
+* @param:
+* float _volt: the PV voltage
+* float _current: the PV current
+* float _Power: the PV power
+* float _Energy: the PV energy
+* bool _timerOn: control timer on/off
+* uint8_t _hour: time
+* uint8_t _min: time
+* uint8_t _sec: time
+* @return: NONE
+* @see:
+* .../lib/LCD_display/lcd_menu.hpp
+* @todo:
+* NONE
+* @bug:
+* NONE
+******************************************************************************/
 void menu2_display(float _volt, float _current, float _Power, float _Energy, bool _timerOn, uint8_t _hour, uint8_t _min, uint8_t _sec)
 {
     char buff[12];
@@ -157,6 +228,28 @@ void menu2_display(float _volt, float _current, float _Power, float _Energy, boo
     gOled.display();
 }
 
+/******************************************************************************
+* DESCRIPTION: Function to display the Battery charge Info menu
+* @author:
+* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* @version: v1.0.0
+* @param:
+* float _volt: the Battery voltage
+* float _current: the Battery current
+* float _Power: the Battery power
+* float _Energy: the Battery energy
+* bool _timerOn: control timer on/off
+* uint8_t _hour: time
+* uint8_t _min: time
+* uint8_t _sec: time
+* @return: NONE
+* @see:
+* .../lib/LCD_display/lcd_menu.hpp
+* @todo:
+* NONE
+* @bug:
+* NONE
+******************************************************************************/
 void menu3_display(float _volt, float _current, float _Power, float _Energy, bool _timerOn, uint8_t _hour, uint8_t _min, uint8_t _sec)
 {
     char buff[12];
@@ -215,4 +308,4 @@ void menu3_display(float _volt, float _current, float _Power, float _Energy, boo
     gOled.display();
 }
 
-#endif
+#endif /* _LCD_MENU_H */
