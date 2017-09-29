@@ -21,11 +21,11 @@ DigitalOut myled(LED1);
 extern InterruptIn g_setting_button;
 extern InterruptIn g_selecting_button;
 DigitalOut relay(InverterEnable);
-INA219 sensor1(I2C_SDA, I2C_SCL);
-INA219 sensor2(I2C_SDA, I2C_SCL, 0x41);
+INA219 bat_measure_sensor(I2C_SDA, I2C_SCL, 0x40);
+INA219 pv_measure_sensor(I2C_SDA, I2C_SCL, 0x41);
 extern uint8_t g_mode;
-extern bool g_timer_on_1_s;
-extern bool g_timer_on_2_s;
+extern bool g_timer_on_1;
+extern bool g_timer_on_2;
 uint8_t g_sec_;
 uint8_t g_min_;
 uint8_t g_hour_;
@@ -74,21 +74,21 @@ LOCAL FUNCTIONS
 ******************************************************************************/
 void get_data_ina(INA219* sensor, float* volt, float* curr, float* power)
 {
-    *volt=sensor->read_bus_voltage();
-    *curr=sensor->read_current_mA();
-    *power=sensor->read_power_mW();
+    *volt = sensor -> read_bus_voltage();
+    *curr = sensor -> read_current_mA();
+    *power = sensor -> read_power_mW();
 }
 
 int main() 
 {
-    float pvvolt;
-    float pvCurr;
-    float pvPower;
-    float pvEnergy;
-    float batVolt;
-    float batCurr;
-    float batPower;
-    float batEnergy;
+    float pv_volt;
+    float pv_curr;
+    float pv_power;
+    float pv_energy;
+    float bat_volt;
+    float bat_curr;
+    float bat_power;
+    float bat_energy;
     // put your setup code here, to run once:
     relay.write(0);
     wait_ms(300);
@@ -117,27 +117,27 @@ int main()
         g_sec_ = seconds % 60;
         g_min_ = seconds % 3600 / 60;
         g_hour_ = seconds % 86400 / 3600;
-        get_data_ina(&sensor1, &batVolt, &batCurr,  &batPower);
-        get_data_ina(&sensor, &pvVolt, &pvCurr, &pvPower);
+        get_data_ina(&bat_measure_sensor, &bat_volt, &bat_curr,  &bat_power);
+        get_data_ina(&pv_measure_sensor, &pv_volt, &pv_curr, &pv_power);
         
-       = batPower / 1000  * (float)seconds / 3600;
-        pvEnergy = pvPower / 1000 * (float)seconds / 3600;
+        bat_energy = bat_power / 1000  * (float)seconds / 3600;
+        pv_energy = pv_power / 1000 * (float)seconds / 3600;
         if(g_mode == 0)
         {
-            menu1_display(true, batVolt / 1000, true, true);
+            menu1_display(true, bat_volt / 1000, true, true);
         }
      
         if(g_mode == 1)
         {
-           menu2_display(pvVolt / 1000, pvCurr, pvPower / 1000, pvEnergy, timerOn1, hour_, min_, sec_);
+           menu2_display(pv_volt / 1000, pv_curr, pv_power / 1000, pv_energy, g_timer_on_1, hour_, min_, sec_);
         }
      
         if(g_mode == 2)
         {
-           menu3_display(batVolt /1000, batCurr, batPower / 1000, batEnergy, timerOn2, hour_, min_, sec_);
+           menu3_display(bat_volt /1000, bat_curr, bat_power / 1000, bat_energy, g_timer_on_2, hour_, min_, sec_);
         }
      
-        if(batCurr < 50)
+        if(bat_curr < 50)
         {
            relay.write(1);
         }
