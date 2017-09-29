@@ -1,12 +1,22 @@
-// test editting
-int foo=0;
-
+/******************************************************************************
+* @file main.cpp
+* @author MANDEVICES GROUP
+* @version V1.0.1
+* @date 29/09/2017
+* @brief
+******************************************************************************/
+/******************************************************************************
+INCLUDES
+******************************************************************************/
 #include <mbed.h>
 #include <lcd_menu.hpp>
 #include <INA219.hpp>
 #include <iopin.h>
 #include <interruptfunc.h>
 #include <logo.h>
+/******************************************************************************
+GLOBAL VARIABLES
+******************************************************************************/
 DigitalOut myled(LED1);
 extern InterruptIn g_setting_button;
 extern InterruptIn g_selecting_button;
@@ -20,7 +30,48 @@ uint8_t g_sec_;
 uint8_t g_min_;
 uint8_t g_hour_;
 extern Adafruit_SSD1306_I2c gOled;
+/******************************************************************************
+GLOBAL FUNCTIONS
+******************************************************************************/
+void get_data_ina(INA219* sensor, float* volt, float* curr, float* power);
+/******************************************************************************
+DATA TYPE DEFINE
+******************************************************************************/
+/******************************************************************************
+PRIVATE VARIABLES
+******************************************************************************/
+/******************************************************************************
+LOCAL FUNCTIONS
+******************************************************************************/
+/*****************************************************************************/
+/**
+* @brief:
+* @param:
+* @retval:
+* @author: 
+* @created: 29/09/2017
+* @version:
+* @reviewer:
+*/
 
+/******************************************************************************
+* DESCRIPTION: Function to get voltage, current, power measured by INA219 
+* @author:
+* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* @version: v1.0.0
+* @param:
+* INA219* pSensor : the pointer of INA219 object
+* float* pVolt: the pointer of voltage varible
+* float* pCurr: the pointer of current varible 
+* float* pPower: the pointer of power varible
+* @return: NONE
+* @see:
+* .../src/main.cpp
+* @todo:
+* NONE
+* @bug:
+* NONE
+******************************************************************************/
 void get_data_ina(INA219* sensor, float* volt, float* curr, float* power)
 {
     *volt=sensor->read_bus_voltage();
