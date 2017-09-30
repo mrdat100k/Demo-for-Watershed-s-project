@@ -1,6 +1,6 @@
 /******************************************************************************
 * @file main.cpp
-* @author MANDEVICES GROUP
+* @author 
 * @version V1.0.1
 * @date 29/09/2017
 * @brief
@@ -57,7 +57,7 @@ LOCAL FUNCTIONS
 /******************************************************************************
 * DESCRIPTION: Function to get voltage, current, power measured by INA219 
 * @author:
-* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* 
 * @version: v1.0.0
 * @param:
 * INA219* pSensor : the pointer of INA219 object
@@ -113,13 +113,15 @@ int main()
     while(1)
     {
         // put your main code here, to run repeatedly:
+       /* get time from RTC register*/
         uint32_t seconds = time(NULL);
         g_sec_ = seconds % 60;
         g_min_ = seconds % 3600 / 60;
         g_hour_ = seconds % 86400 / 3600;
+       /* get data measuared by INA219 */
         get_data_ina(&bat_measure_sensor, &bat_volt, &bat_curr,  &bat_power);
         get_data_ina(&pv_measure_sensor, &pv_volt, &pv_curr, &pv_power);
-        
+       /* calculate energy */ 
         bat_energy = bat_power / 1000  * (float)seconds / 3600;
         pv_energy = pv_power / 1000 * (float)seconds / 3600;
         if(g_mode == 0)
