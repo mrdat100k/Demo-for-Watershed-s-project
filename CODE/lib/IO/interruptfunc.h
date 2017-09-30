@@ -30,7 +30,7 @@ bool g_timer_on_2 = true;
 /******************************************************************************
 * DESCRIPTION: the timeout service routine, when timeout reset mode to switch back the main menu
 * @author:
-* Nguyen Ba Dat - Member of MANDEVICES GROUP
+*
 * @version: v1.0.0
 * @param:
 * NONE
@@ -50,7 +50,7 @@ void set_mode_when_timeout()
 /******************************************************************************
 * DESCRIPTION: the Interrupt service routine of fall interrupt when press the select button
 * @author:
-* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* 
 * @version: v1.0.0
 * @param:
 * NONE
@@ -78,7 +78,7 @@ static void fall_select_btn_isr()
 /******************************************************************************
 * DESCRIPTION: the Interrupt service routine of fall interrupt when press the set button
 * @author:
-* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* 
 * @version: v1.0.0
 * @param:
 * NONE
@@ -112,7 +112,7 @@ static void fall_set_btn_isr()
 /******************************************************************************
 * DESCRIPTION: the Interrupt service routine of rise interrupt when press the set button
 * @author:
-* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* 
 * @version: v1.0.0
 * @param:
 * NONE
