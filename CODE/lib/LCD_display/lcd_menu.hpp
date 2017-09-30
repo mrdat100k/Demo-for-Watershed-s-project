@@ -58,7 +58,7 @@ Adafruit_SSD1306_I2c gOled(gI2C, NC);
 * DESCRIPTION: Function to write a string at position defined on screen 
 * (hàm dùng để viết một chuỗi kí tự ra một vị trí trên màn hình)
 * @author:
-* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* 
 * @version: v1.0.0
 * @param:
 * int16_t posX: the latitude position
@@ -82,7 +82,7 @@ void write_position(int16_t posX, int16_t posY, const char* data)
 /******************************************************************************
 * DESCRIPTION: Function to display the main menu
 * @author:
-* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* 
 * @version: v1.0.0
 * @param:
 * bool _charge : a boolean varible mean batery charg Yes or No
@@ -155,7 +155,7 @@ void menu1_display(bool _charge, float _batVolt, bool _DCOn, bool _ACOn)
 /******************************************************************************
 * DESCRIPTION: Function to display the PV charge Info menu
 * @author:
-* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* 
 * @version: v1.0.0
 * @param:
 * float _volt: the PV voltage
@@ -231,7 +231,7 @@ void menu2_display(float _volt, float _current, float _Power, float _Energy, boo
 /******************************************************************************
 * DESCRIPTION: Function to display the Battery charge Info menu
 * @author:
-* Nguyen Ba Dat - Member of MANDEVICES GROUP
+* 
 * @version: v1.0.0
 * @param:
 * float _volt: the Battery voltage
