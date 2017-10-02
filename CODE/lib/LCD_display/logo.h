@@ -3,7 +3,7 @@
 * @brief This file save the bitmap of watershed's logo
 *
 * @par
-* COPYRIGHT NOTICE: (c) 2017 MANDEVICES GROUP, HUST.
+* COPYRIGHT NOTICE:
 * All rights reserved.
 */
 #ifndef _LOGO_H
