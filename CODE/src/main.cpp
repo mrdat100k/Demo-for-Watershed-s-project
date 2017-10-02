@@ -5,15 +5,18 @@
 * @date 29/09/2017
 * @brief
 ******************************************************************************/
+
 /******************************************************************************
 INCLUDES
 ******************************************************************************/
-#include <mbed.h>
-#include <lcd_menu.hpp>
+ #include <mbed.h>
+
 #include <INA219.hpp>
 #include <iopin.h>
 #include <interruptfunc.h>
-#include <logo.h>
+
+#include "LCDController.hpp"
+
 /******************************************************************************
 GLOBAL VARIABLES
 ******************************************************************************/
@@ -29,7 +32,10 @@ extern bool g_timer_on_2;
 uint8_t g_sec_;
 uint8_t g_min_;
 uint8_t g_hour_;
-extern Adafruit_SSD1306_I2c gOled;
+
+LCDController lcd_controller;
+
+
 /******************************************************************************
 GLOBAL FUNCTIONS
 ******************************************************************************/
@@ -79,36 +85,36 @@ void get_data_ina(INA219* sensor, float* volt, float* curr, float* power)
     *power = sensor -> read_power_mW();
 }
 
+void Init(){
+
+	float pv_volt;
+	float pv_curr;
+	float pv_power;
+	float pv_energy;
+	float bat_volt;
+	float bat_curr;
+	float bat_power;
+	float bat_energy;
+	// put your setup code here, to run once:
+	relay.write(0);
+	wait_ms(300);
+	lcd_controller.showLogo();
+	sensor1.calibrate_32v_3200A();
+	sensor2.calibrate_32v_3200A();
+	g_setting_button.disable_irq();
+	g_selecting_button.disable_irq();
+	g_setting_button.fall(&fall_set_btn_isr);
+	g_selecting_button.fall(&fall_select_btn_isr);
+	g_setting_button.rise(&rise_set_btn_isr);
+	g_setting_button.enable_irq();
+	g_selecting_button.enable_irq();
+	wait(2);
+	set_time(0);
+}
+
 int main() 
 {
-    float pv_volt;
-    float pv_curr;
-    float pv_power;
-    float pv_energy;
-    float bat_volt;
-    float bat_curr;
-    float bat_power;
-    float bat_energy;
-    // put your setup code here, to run once:
-    relay.write(0);
-    wait_ms(300);
-    gOled.begin();
-    gOled.clearDisplay();
-    gOled.setTextCursor(0, 0);
-    gOled.drawBitmap(0, 6, watershedlogo, 128, 48, WHITE);
-    gOled.setTextCursor(0, 0);
-    gOled.display();
-    sensor1.calibrate_32v_3200A();
-    sensor2.calibrate_32v_3200A();
-    g_setting_button.disable_irq();
-    g_selecting_button.disable_irq();
-    g_setting_button.fall(&fall_set_btn_isr);
-    g_selecting_button.fall(&fall_select_btn_isr);
-    g_setting_button.rise(&rise_set_btn_isr);
-    g_setting_button.enable_irq();
-    g_selecting_button.enable_irq();
-    wait(2);
-    set_time(0);
+
 
     while(1)
     {

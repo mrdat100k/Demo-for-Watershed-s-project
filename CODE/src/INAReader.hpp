@@ -1,0 +1,4 @@
+class INAReader{
+public:
+private:
+};
