@@ -3,7 +3,7 @@
 * @brief This file include interrupt service routine for buttons.
 * 
 * @par
-* COPYRIGHT NOTICE: (c) 2017 MANDEVICES GROUP, HUST.
+* COPYRIGHT NOTICE: 
 */
 #ifndef _INTFUNC_H
 #define _INTFUNC_H
