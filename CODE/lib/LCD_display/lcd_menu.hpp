@@ -3,7 +3,7 @@
 * @brief This is a library for format and display three menu.
 * 
 * @par
-* COPYRIGHT NOTICE: (c) 2017 MANDEVICES GROUP, HUST.
+* COPYRIGHT NOTICE: 
 */
 #ifndef _LCD_MENU_H_
 #define _LCD_MENU_H_
