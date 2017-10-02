@@ -3,7 +3,6 @@
 * @brief To define the IO pin follow it's function.
 * 
 * @par
-* COPYRIGHT NOTICE: (c) 2017 MANDEVICES GROUP, HUST.
 */
 #ifndef _IO_H
 #define _IO_H
