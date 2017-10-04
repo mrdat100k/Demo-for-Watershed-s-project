@@ -106,66 +106,71 @@ void LCDController::updateScreen(uint8_t screen_index)
         case(0) : {
 
             //TODO: viet not
-            writeAtPosition(0, "MENU 1");
-            writeAtPosition(1, "1");
-            writeAtPosition(2, "2");
-            writeAtPosition(3, "3");
-            writeAtPosition(4, "4");
-            writeAtPosition(5, "5");
-            writeAtPosition(6, "6");
-            writeAtPosition(7, "7");
-            writeAtPosition(8, "8");
-            writeAtPosition(9, "9");
-            writeAtPosition(10, "10");
-            writeAtPosition(11, "11");
-            writeAtPosition(12, "12");
-            break;
+         				  writeAtPosition(0, "Main Menu:");
+					  writeAtPosition(1, "Charge");
+					  writeAtPosition(4, "Battery");
+					  writeAtPosition(7, "AC On");
+					  writeAtPosition(2, "Yes/No");
+					  writeAtPosition(3, "DC/AC");
+					  sprintf(buff, "%2.1f V ", battery_volt);
+					  writeAtPosition(5, buff);
+					  
+					  //TODO: viet not
+					  break;
         }
         case(1) : {
-            //TODO: viet not
-            writeAtPosition(0, "MENU 2");
-            writeAtPosition(1, "1");
-            writeAtPosition(2, "2");
-            writeAtPosition(3, "3");
-            writeAtPosition(4, "4");
-            writeAtPosition(5, "5");
-            writeAtPosition(6, "6");
-            writeAtPosition(7, "7");
-            writeAtPosition(8, "8");
-            writeAtPosition(9, "9");
-            writeAtPosition(10, "10");
-            writeAtPosition(11, "11");
-            writeAtPosition(12, "12");
-              break;
+              				  writeAtPosition(0, "PV Charge Info");
+					  writeAtPosition(1, "PV Voltage");
+					  writeAtPosition(4, "PV Current");
+					  writeAtPosition(7, "PV Power");
+					  writeAtPosition(10, "Energy");
+					  sprintf(buff, "%2.1f mA ", pv_volt);
+					  writeAtPosition(2, buff); 
+					  sprintf(buff, "%2.1f mA ", pv_curr);
+					  writeAtPosition(5, buff);
+					  sprintf(buff, "%2.1f mA ", pv_power);
+					  writeAtPosition(8, buff);
+					  sprintf(buff, "%2.1f mA ", pv_energy);
+					  writeAtPosition(11, buff);
+					  if(state)
+					  {
+					    writeAtPosition(9, "Timer ON");
+					  }
+					  esle
+					  {
+						writeAtPosition(9, "Timer OFF");  
+					  }
+			
+			
+						
+					  //TODO: viet not
+					  break;
         }
         case(2) : {
-            writeAtPosition(0, "Battery Charge Info");
-            writeAtPosition(1, "Bat Voltage");
-            writeAtPosition(4, "Bat Current");
-            writeAtPosition(7, "Power");
-            writeAtPosition(10, "Energy");
-            /* Update timer*/
-            sprintf(buff, "%02d:%02d:%02d", hour, minute, second);
-            writeAtPosition(12, buff);
-            /* Update battery current*/
-            sprintf(buff, "%2.1f mA ", battery_curr);
-            writeAtPosition(5, buff);
+          				  writeAtPosition(0, "Battery Charge Info");
+					  writeAtPosition(1, "Bat Voltage");
+					  writeAtPosition(4, "Bat Current");
+					  writeAtPosition(7, "Power");
+					  writeAtPosition(10, "Energy");
+					  /* Update timer*/
+					  sprintf(buff, "%02d:%02d:%02d", hour, minute, second);
+					  writeAtPosition(12, buff);
+					  /* Update battery current*/
+					  sprintf(buff, "%2.1f mA ", battery_curr);
+					  writeAtPosition(5, buff);
 
-            /* Update battery voltage*/
-            sprintf(buff, "%2.1f V ", battery_volt);
-            writeAtPosition(2, buff);
+					  /* Update battery voltage*/
+					  sprintf(buff, "%2.1f V ", battery_volt);
+					  writeAtPosition(2, buff);
 
-            /* Update battery power*/
-            sprintf(buff, "%2.1fW ", battery_power);
-            writeAtPosition(8, buff);
+					  /* Update battery power*/
+					  sprintf(buff, "%2.1fW ", battery_power);
+					  writeAtPosition(8, buff);
 
-      /* Update battery energy */
-            sprintf(buff, "%3.1fWh ", battery_energy);
-            writeAtPosition(11, buff);
-            break;
-          }
-        default:
-            break;
+					  /* Update battery energy */
+					  sprintf(buff, "%3.1fWh ", energy);
+					  writeAtPosition(11, buff);
+					  break;
 }
 
     lcd_object_ptr -> display();
