@@ -132,14 +132,14 @@ void LCDController::updateScreen(uint8_t screen_index)
 					  writeAtPosition(8, buff);
 					  sprintf(buff, "%2.1f mA ", pv_energy);
 					  writeAtPosition(11, buff);
-					  if(state)
-					  {
+					//  if(state)
+					//  {
 					    writeAtPosition(9, "Timer ON");
-					  }
-					  esle
-					  {
-						writeAtPosition(9, "Timer OFF");  
-					  }
+					//  }
+					//  esle
+					//  {
+					//	writeAtPosition(9, "Timer OFF");  
+					//  }
 			
 			
 						
